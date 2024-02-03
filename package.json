@@ -1,0 +1,19 @@
+{
+  "name": "javascript_web_crawler",
+  "version": "1.0.0",
+  "description": "Web Crawler coded in JavaScript using Node.js. This is a JavaScript application that generates an \"internal links\" report for any website on the internet by crawling each page of the site.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aspiringVegetarian/javascript_web_crawler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aspiringVegetarian/javascript_web_crawler/issues"
+  },
+  "homepage": "https://github.com/aspiringVegetarian/javascript_web_crawler#readme"
+}
