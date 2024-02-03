@@ -18,3 +18,21 @@ test('strips protocol and multiple trailing forward slash', () => {
         'blog.boot.dev/path'
     )
 });
+
+test('empty string', () => {
+    expect(normalizeURL('')).toBe(
+        ''
+    )
+});
+
+test('not a valid url', () => {
+    expect(normalizeURL('hello there')).toBe(
+        ''
+    )
+});
+
+test('capitals in host name', () => {
+    expect(normalizeURL('https://BLOG.BooT.deV/path')).toBe(
+        'blog.boot.dev/path'
+    )
+});

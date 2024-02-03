@@ -1,7 +1,12 @@
 function normalizeURL(url){
-    fullURL = new URL(url)
+    try{
+        fullURL = new URL(url)
+    }
+    catch(err){
+        return ''
+    }
     urlClean = fullURL.host + fullURL.pathname
-    while (urlClean.endsWith('/')){
+    while (urlClean.length > 0 && urlClean.endsWith('/')){
         urlClean = urlClean.slice(0,-1)
     }
     return urlClean
