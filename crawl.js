@@ -4,14 +4,16 @@ async function crawlPage(baseURL, currentURL, pages){
 
     const baseURLObj = new URL(baseURL)
     const currentURLObj = new URL(currentURL)
-    if (baseURLObj.hostname !== currentURLObj.hostname){
-        console.log(`Will not crawl ${currentURL}, since it is on a different domain than ${baseURL}`)
+
+    const normalizedCurrentURL = normalizeURL(currentURL)
+    if (pages[normalizedCurrentURL]){
+        pages[normalizedCurrentURL]++
         return pages
     }
 
-    const normalizedCurrentURL = normalizeURL(currentURL)
-    if (pages[normalizedCurrentURL] > 0){
-        pages[normalizedCurrentURL]++
+    if (baseURLObj.hostname !== currentURLObj.hostname){
+        console.log(`Will not crawl ${currentURL}, since it is on a different domain than ${baseURL}`)
+        pages[normalizedCurrentURL] = 0
         return pages
     }
 
