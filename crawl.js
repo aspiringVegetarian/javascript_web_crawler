@@ -14,12 +14,35 @@ function normalizeURL(url){
 
 const { JSDOM } = require('jsdom')
 
+async function crawlPage(currentURL){
+    console.log(`Actively crawling: ${currentURL} ...`)
+
+    try {
+        resp = await fetch(currentURL)
+
+        if (resp.status > 399){
+            console.log(`${resp.status} status code while fetching ${currentURL}`)
+            return
+        }
+
+        const contentType = resp.headers.get("Content-Type")
+        if (!contentType.includes("text/html")){
+            console.log(`Non-HTML content type : ${contentType} while fetching ${currentURL}`)
+            return
+        } 
+        console.log(await resp.text())
+    } catch (err) {
+        console.log(`Error while fetching ${currentURL} : ${err.message}`)
+    }
+
+}
+
 function getURLsFromHTML(htmlBody, baseURL){
     const urls = []
     const dom = new JSDOM(htmlBody)
     const linkElements = dom.window.document.querySelectorAll('a')
     for (const linkElement of linkElements) {
-        
+
         if (linkElement.href.startsWith('/')){
             try {
                 urlCheck = new URL(baseURL+linkElement.href)
@@ -42,5 +65,6 @@ function getURLsFromHTML(htmlBody, baseURL){
 }
 module.exports = {
     normalizeURL,
+    crawlPage,
     getURLsFromHTML
   }  

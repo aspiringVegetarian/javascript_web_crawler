@@ -4,7 +4,7 @@
   "description": "Web Crawler coded in JavaScript using Node.js. This is a JavaScript application that generates an \"internal links\" report for any website on the internet by crawling each page of the site.",
   "main": "index.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node --no-warnings main.js",
     "test": "jest"
   },
   "repository": {
